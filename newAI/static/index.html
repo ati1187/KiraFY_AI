@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ev Fiyat Tahmini</title>
+</head>
+<body style="margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+  <div style="padding: 40px; border: 1px solid #ccc; border-radius: 10px; font-size: 18px; width: 500px;">
+    <h2 style="text-align: center;">Ev Fiyat Tahmin Formu</h2>
+    <form id="predictForm">
+      <label>İlçe:
+        <select name="district" style="font-size: 16px; width: 100%;">
+          <option value="adalar">Adalar</option>
+          <option value="kadikoy">Kadıköy</option>
+          <option value="besiktas">Beşiktaş</option>
+          <option value="maltepe">Maltepe</option>
+        </select>
+      </label><br /><br />
+
+      <label>Brüt m²: <input name="GrossSquareMeters" type="number" value="160" style="font-size: 16px; width: 100%;" /></label><br /><br />
+      <label>Net m²: <input name="NetSquareMeters" value="120 m2" style="font-size: 16px; width: 100%;" /></label><br /><br />
+      <label>Oda Sayısı: <input name="NumberOfRooms" value="3+1" style="font-size: 16px; width: 100%;" /></label><br /><br />
+
+      <label>Kat:
+        <select name="FloorLocation" style="font-size: 16px; width: 100%;">
+          <option value="Çatı Katı">Çatı Katı</option>
+          <option value="Düz Giriş">Düz Giriş</option>
+          <option value="Bahçe Katı">Bahçe Katı</option>
+          <option value="Yüksek Giriş">Yüksek Giriş</option>
+        </select>
+      </label><br /><br />
+
+      <label>Isıtma Tipi:
+        <select name="HeatingType" style="font-size: 16px; width: 100%;">
+          <option value="Kombi Doğalgaz">Kombi Doğalgaz</option>
+          <option value="Soba">Soba</option>
+          <option value="Merkezi">Merkezi</option>
+          <option value="Yok">Yok</option>
+        </select>
+      </label><br /><br />
+
+      <label>Bina Yaşı:
+        <select name="BuildingAge" style="font-size: 16px; width: 100%;">
+          <option value="0">0</option>
+          <option value="1-5">1-5</option>
+          <option value="5-10">5-10</option>
+          <option value="11-15">11-15</option>
+          <option value="16-20">16-20</option>
+          <option value="21 Ve Üzeri">21 Ve Üzeri</option>
+        </select>
+      </label><br /><br />
+
+      <label>Bina Kat Sayısı: <input name="NumberFloorsofBuilding" type="number" value="3" style="font-size: 16px; width: 100%;" /></label><br /><br />
+      <label>Banyo Sayısı: <input name="NumberOfBathrooms" type="number" value="2" style="font-size: 16px; width: 100%;" /></label><br /><br />
+      <label>WC Sayısı: <input name="NumberOfWCs" type="number" value="1" style="font-size: 16px; width: 100%;" /></label><br /><br />
+
+      <label>Site İçinde:
+        <select name="InsideTheSite" style="font-size: 16px; width: 100%;">
+          <option value="Evet">Evet</option>
+          <option value="Hayır">Hayır</option>
+        </select>
+      </label><br /><br />
+
+      <label>İpotek Durumu:
+        <select name="MortgageStatus" style="font-size: 16px; width: 100%;">
+          <option value="Yok">Yok</option>
+          <option value="Var">Var</option>
+        </select>
+      </label><br /><br />
+
+      <label>Takas:
+        <select name="Swap" style="font-size: 16px; width: 100%;">
+          <option value="Yok">Yok</option>
+          <option value="Var">Var</option>
+        </select>
+      </label><br /><br />
+
+      <label>Balkon:
+        <select name="Balcony" style="font-size: 16px; width: 100%;">
+          <option value="Yok">Yok</option>
+          <option value="Var">Var</option>
+        </select>
+      </label><br /><br />
+
+      <label>Fiyat Durumu:
+        <select name="PriceStatus" style="font-size: 16px; width: 100%;">
+          <option value="Genel Fiyat">Genel Fiyat</option>
+        </select>
+      </label><br /><br />
+
+      <label>Kredi Durumu:
+        <select name="CreditEligibility" style="font-size: 16px; width: 100%;">
+          <option value="Krediye Uygun">Krediye Uygun</option>
+          <option value="Krediye Uygun Değil">Krediye Uygun Değil</option>
+        </select>
+      </label><br /><br />
+
+      <label>Eşya Durumu:
+        <select name="ItemStatus" style="font-size: 16px; width: 100%;">
+          <option value="Eşyalı">Eşyalı</option>
+          <option value="Boş">Boş</option>
+        </select>
+      </label><br /><br />
+
+      <label>Yapı Durumu:
+        <select name="BuildStatus" style="font-size: 16px; width: 100%;">
+          <option value="İkinci El">İkinci El</option>
+          <option value="Yapım Aşamasında">Yapım Aşamasında</option>
+        </select>
+      </label><br /><br />
+
+      <button type="submit" style="font-size: 18px; padding: 10px 20px; width: 100%;">Tahmin Et</button>
+    </form>
+
+    <h3 id="sonuc" style="text-align: center;"></h3>
+  </div>
+
+  <!-- ALTTA SONUCU GÖSTERME ALANI -->
+  <div id="altSonuc" style="margin-top: 20px; font-size: 20px; font-weight: bold; text-align: center;"></div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      // Sayısal alanlar
+      data.GrossSquareMeters = parseFloat(data.GrossSquareMeters);
+      data.NumberFloorsofBuilding = parseInt(data.NumberFloorsofBuilding);
+      data.NumberOfBathrooms = parseInt(data.NumberOfBathrooms);
+      data.NumberOfWCs = parseInt(data.NumberOfWCs);
+
+      const response = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      const formatted = `Tahmin Edilen Fiyat: ${result.tahmin_edilen_fiyat.toLocaleString()} ₺`;
+
+      // Sonuçları hem formun altına hem de sayfanın altına yaz
+      document.getElementById("sonuc").innerText = formatted;
+      document.getElementById("altSonuc").innerText = formatted;
+    });
+  </script>
+
+</body>
+</html>
